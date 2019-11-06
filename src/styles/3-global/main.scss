@@ -1,0 +1,9 @@
+.main {
+  background-color: $color-white;
+  margin-top: 120px;
+  margin-bottom: 40px;
+
+  @include breakpoint-up(md) {
+    margin-bottom: 60px;
+  }
+}

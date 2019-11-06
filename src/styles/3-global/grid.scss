@@ -1,0 +1,142 @@
+$container-gutter: 21px;
+
+$col-gutter: 18.75px;
+
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+.container {
+  max-width: (map-get($orion-breakpoints, 'xl') + $container-gutter);
+}
+
+.container-fluid {
+  max-width: $orion-max-width;
+}
+
+.container-fluid,
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  .row {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+      .row {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.row {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .row {
+    width: calc(100% + #{2 * $col-gutter});
+  }
+}
+
+.col {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  flex-basis: 100vw;
+  max-width: 100vw;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.first {
+  order: -1;
+}
+
+.last {
+  order: 1;
+}
+
+@mixin generate-columns($breakpoint) {
+  $prefix: '.col';
+
+  @if ($breakpoint != 'base') {
+    $prefix: '.col-#{$breakpoint}';
+  }
+
+  .container {
+    padding-right: $container-gutter;
+    padding-left: $container-gutter;
+    width: 100%;
+  }
+
+  .row {
+    margin-right: -1 * $col-gutter;
+    margin-left: -1 * $col-gutter;
+  }
+
+  .col {
+    margin-left: $col-gutter - $container-gutter;
+    padding-left: $container-gutter;
+    padding-right: $container-gutter;
+  }
+
+  @for $i from 1 through 12 {
+    @if ($breakpoint != 'base') {
+      .col-#{$i} {
+        padding-right: $col-gutter;
+        padding-left: $col-gutter;
+      }
+    }
+
+    #{$prefix}-#{$i} {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      flex-basis: calc(100% * #{$i}/ 12);
+      max-width: calc(100% * #{$i}/ 12);
+      margin-right: 0;
+      margin-left: 0;
+      padding-right: $col-gutter;
+      padding-left: $col-gutter;
+    }
+  }
+
+  @for $i from 0 through 11 {
+    #{$prefix}-offset-#{$i} {
+      margin-left: calc(100% * #{$i}/ 12) !important;
+      padding-right: $col-gutter;
+      padding-left: $col-gutter;
+    }
+
+    .#{$breakpoint}-offset-#{$i} {
+      margin-left: calc(100% * #{$i}/ 12);
+    }
+  }
+}
+
+@mixin generate-utilities($breakpoint) {
+  .first-#{$breakpoint} {
+    order: -1;
+  }
+
+  .last-#{$breakpoint} {
+    order: 1;
+  }
+}
+
+@each $breakpoint, $_ in $orion-breakpoints {
+  @if $breakpoint== 'base' {
+    @include generate-columns($breakpoint);
+    @include generate-utilities($breakpoint);
+  } @else {
+    @include breakpoint-up($breakpoint) {
+      @include generate-columns($breakpoint);
+      @include generate-utilities($breakpoint);
+    }
+  }
+}

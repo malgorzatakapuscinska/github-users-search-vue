@@ -1,0 +1,19 @@
+@mixin generate-rule($prefix, $declarations) {
+  @each $breakpoint, $_ in $orion-breakpoints {
+    @if $breakpoint == 'base' {
+      .#{$prefix} {
+        @each $property, $value in $declarations {
+          #{$property}: #{$value};
+        }
+      }
+    } @else {
+      @include breakpoint-up($breakpoint) {
+        .#{$prefix}-#{$breakpoint} {
+          @each $property, $value in $declarations {
+            #{$property}: #{$value};
+          }
+        }
+      }
+    }
+  }
+}

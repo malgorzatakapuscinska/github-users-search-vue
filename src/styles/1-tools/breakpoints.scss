@@ -1,0 +1,35 @@
+@mixin breakpoint-between($lower_breakpoint, $upper_breakpoint) {
+  @if (not map-has-key($orion-breakpoints, $lower_breakpoint) or not map-has-key($orion-breakpoints, $upper_breakpoint)) {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg, xl";
+  }
+
+  @else {
+    @media (min-width: map-get($orion-breakpoints, $lower_breakpoint)) and (max-width: map-get($orion-breakpoints, $upper_breakpoint) - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if (not map-has-key($orion-breakpoints, $breakpoint)) {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg, xl";
+  }
+
+  @else {
+    @media (max-width: map-get($orion-breakpoints, $breakpoint) - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-up($breakpoint) {
+  @if (not map-has-key($orion-breakpoints, $breakpoint)) {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg, xl";
+  }
+
+  @else {
+    @media (min-width: map-get($orion-breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}

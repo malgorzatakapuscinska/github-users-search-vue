@@ -1,0 +1,17 @@
+@mixin css-lock($prop, $unit, $min-size, $max-size, $min-width, $max-width) {
+  @if (map-has-key($orion-breakpoints, $min-width)) {
+    $min-width: strip-unit(map-get($orion-breakpoints, $min-width));
+  }
+
+  @if (map-has-key($orion-breakpoints, $max-width)) {
+    $max-width: strip-unit(map-get($orion-breakpoints, $max-width));
+  }
+
+  #{$prop}: calc(#{$min-size}#{$unit} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-width}#{$unit}) / (#{$max-width} - #{$min-width})));
+  @media (max-width: #{$min-width}#{$unit}) {
+    #{$prop}: #{$min-size}#{$unit};
+  }
+  @media (min-width: #{$max-width}#{$unit}) {
+    #{$prop}: #{$max-size}#{$unit};
+  }
+}

@@ -1,0 +1,46 @@
+html {
+  line-height: normal;
+}
+
+a,
+button {
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
+  }
+}
+
+input,
+input[type='search'],
+select,
+textarea {
+  &,
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}

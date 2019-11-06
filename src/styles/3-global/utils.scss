@@ -1,0 +1,34 @@
+// color
+@include generate-rule('text-black', (color: $color-black));
+@include generate-rule('text-black-2', (color: $color-black-2));
+@include generate-rule('text-grey', (color: $color-grey));
+@include generate-rule('text-grey-2', (color: $color-grey-2));
+@include generate-rule('text-pink', (color: $color-pink));
+@include generate-rule('text-purple', (color: $color-purple));
+@include generate-rule('text-white', (color: $color-white));
+
+// display
+@include generate-rule('hidden', (display: none));
+@include generate-rule('block', (display: block));
+@include generate-rule('inline-block', (display: inline-block));
+
+// font weight
+@include generate-rule('font-light', (font-weight: 300));
+@include generate-rule('font-normal', (font-weight: 400));
+@include generate-rule('font-medium', (font-weight: 500));
+@include generate-rule('font-bold', (font-weight: 700));
+
+// margin
+@include generate-rule('mx-left', (margin-left: auto));
+@include generate-rule('mx-right', (margin-right: auto));
+@include generate-rule('mx-auto', (margin-left: auto, margin-right: auto));
+
+// position
+@include generate-rule('relative', (position: relative));
+@include generate-rule('absolute', (position: absolute));
+
+// text align
+@include generate-rule('text-center', (text-align: center));
+
+// text-decoration
+@include generate-rule('no-underline', (text-decoration: no-underline));
