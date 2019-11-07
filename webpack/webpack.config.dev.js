@@ -70,12 +70,37 @@ module.exports = merge(common, {
       },
       {
         test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+            }
           },
-        },
+
+// to test image optimise uncomment lines below
+
+
+          // {
+          //   loader: 'image-webpack-loader',
+          //   options: {
+          //     mozjpeg: {
+          //       progressive: true,
+          //       quality: 65
+          //     },
+          //     pngquant: {
+          //       quality: [0.65, 0.90],
+          //       speed: 4
+          //     },
+          //     gifsicle: {
+          //       interlaced: false,
+          //     },
+          //     webp: {
+          //       quality: 75
+          //     }
+          //   }
+          // }
+        ],
       },
       {
         test: /\.html$/,

@@ -86,13 +86,34 @@ module.exports = merge(common, {
       {
         test: /\.(ico|jpg|jpeg|png|gif|webp|svg)$/i,
         include: Path.join(__dirname, '../src/images'),
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]',
-            outputPath: url => url.replace('src/', ''),
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              outputPath: url => url.replace('src/', ''),
+            },
           },
-        },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              pngquant: {
+                quality: [0.65, 0.90],
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.html$/,
