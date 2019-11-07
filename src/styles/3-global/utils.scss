@@ -1,10 +1,5 @@
 // color
 @include generate-rule('text-black', (color: $color-black));
-@include generate-rule('text-black-2', (color: $color-black-2));
-@include generate-rule('text-grey', (color: $color-grey));
-@include generate-rule('text-grey-2', (color: $color-grey-2));
-@include generate-rule('text-pink', (color: $color-pink));
-@include generate-rule('text-purple', (color: $color-purple));
 @include generate-rule('text-white', (color: $color-white));
 
 // display
