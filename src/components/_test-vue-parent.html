@@ -1,0 +1,18 @@
+<script type="text/x-template" id="vue-parent-template">
+  <div>
+    <h2>Hello from vue parent</h2>
+    <slot></slot>
+  </div>
+</script>
+
+${require('./_test-vue-child.html')}
+
+<div id="vue-parent-wrapper">
+  <vue-parent>
+    <vue-child :date="new Date()">
+      <div>
+        <i>I am in the slot</i>
+      </div>
+    </vue-child>
+  </vue-parent>
+</div>
