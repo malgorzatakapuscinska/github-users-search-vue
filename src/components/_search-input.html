@@ -1,0 +1,10 @@
+<script type="text/x-template" id="search-input">
+  <form @submit="onSubmit">
+    <label htmlFor="searchText">{{searchText}}</label>
+    <input 
+      type="text"
+      id="searchText"
+      v-model="searchText"
+    />
+  </form>
+</script>
