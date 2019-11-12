@@ -39,6 +39,7 @@ module.exports = merge(common, {
       filename: 'css/main.css',
     }),
     new CopyWebpackPlugin([
+      { from: Path.resolve(__dirname, '../src/icons'), to: 'icons' },
       { from: Path.resolve(__dirname, '../src/images'), to: 'images' },
     ]),
     ...pages.map(
@@ -49,7 +50,7 @@ module.exports = merge(common, {
         },
         filename: `${page}`,
         template: Path.resolve(__dirname, `../src/${page}`),
-        title: 'Po stronie farmaceuty',
+        title: 'Basic project',
       })
     ),
   ],
