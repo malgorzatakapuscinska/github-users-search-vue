@@ -1,6 +1,6 @@
 <script type="text/x-template" id="search-input">
-  <form @submit="onSubmit">
-    <label htmlFor="searchText">{{searchText}}</label>
+  <form @submit="onSubmit" @keyup="handleChange">
+    <label htmlFor="searchText">Szukana fraza: </label>
     <input 
       type="text"
       id="searchText"

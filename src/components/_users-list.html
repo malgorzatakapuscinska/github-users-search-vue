@@ -1,0 +1,9 @@
+<script type="text/x-template" id="users-list">
+  <div class="usersBox"> 
+    <User
+      v-for="user in users"
+      :key="user.id"
+      :user="user" 
+    />
+  </div>
+</script>

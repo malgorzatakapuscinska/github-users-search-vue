@@ -1,12 +1,15 @@
 <script type="text/x-template" id="users-search">
-  <section>
+  <section @submited="onSearch($event)">
     <header>
-      <img src="" />
+      <img src="../images/GitHub_Mark.png" />
       <h1>GitHub Users Search Engine</h1>
     </header>
     <main>
-     <search-input />
-      <!-- <UsersList users={this.state.users}/> -->
+      <search-input />
+      <UsersList 
+        v-if="users && users.length > 0"
+        :users="users"
+      />
     </main>
   </section>
 </script>

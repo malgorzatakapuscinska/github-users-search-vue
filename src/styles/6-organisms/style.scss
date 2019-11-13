@@ -1,0 +1,83 @@
+body {
+  box-sizing: content-box;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header img {
+  margin-right: 15px;
+}
+
+section {
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+form input, form label {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+form input:focus {
+  outline: none;
+}
+
+.usersBox {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.userBox {
+  margin: 15px 15px;
+  width: 150px;
+  height: 150px;
+  border: 3px solid black;
+  padding: 40px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  box-sizing: content-box;
+  transition: transform .3s ease-in-out;
+  cursor: pointer;
+}
+
+.userBox img {
+  border-radius: 100%;
+  max-width: 100px;
+  height: auto;
+}
+
+.userBox img, .userBox span {
+  text-decoration: none;
+  color: black;
+  margin: 10px 0;
+}
+
+.userBox span {
+  max-width: 100px;
+  word-break: break-all;
+} 
+
+.userBox:hover, .userBox:hover {
+  transform: scale(1.05)
+}

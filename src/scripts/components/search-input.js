@@ -12,15 +12,18 @@ export default Vue.component('SearchInput', {
   methods: {
     async onSubmit(e) {
       e.preventDefault()
-      console.log('event =>', event)
-      console.log('searchText =>', this.searchText)
-      console.log('this.users =>', this.users)
       if (this.searchText.length >= 3) {
         let response = await fetch(`https://api.github.com/search/users?q=${this.searchText}`)
         let myResponse = await response.json()
-        console.log('myResponse =>', myResponse)
         this.users = myResponse.items
+        this.$eventBus.$emit('submited', this.users)
+      } else {
+        this.users = []
+        this.$eventBus.$emit('submited')
       }
+    },
+    handleChange(e) {
+      this.onSubmit(e)
     },
   },
 })
