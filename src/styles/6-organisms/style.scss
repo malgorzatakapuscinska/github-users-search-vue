@@ -17,6 +17,77 @@ section {
   margin: 0 auto;
 }
 
+.settings {
+  &__open {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 150px;
+    border: 1px solid white;
+    border-radius: 20px;
+    transition: transform .3s ease-in-out;
+    padding: 5px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    span {
+    padding-right: 10px;  
+      display: block;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &__submit {
+    display: block;
+    padding: 5px 15px;
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+    margin-top: 30px;
+  }
+  &__content {
+    height: 0;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: height .3s ease-in-out, opacity .3s ease-in-out;
+    position: relative;
+    z-index: -1;
+    &--open {
+      height: 350px;
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+  &__form {
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    &-item {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      label {
+        margin: 0;
+      }
+      span {
+        display: block;
+      }
+    }
+  }
+}
+
 header {
   text-align: center;
 }
@@ -24,6 +95,9 @@ header {
 form {
   display: flex;
   justify-content: center;
+}
+form.settings__form {
+
 }
 
 form input, form label {

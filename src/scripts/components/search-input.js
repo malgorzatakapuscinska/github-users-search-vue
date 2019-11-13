@@ -7,13 +7,25 @@ export default Vue.component('SearchInput', {
     return {
       searchText: '',
       users: [],
+      baseUrl: 'https://api.github.com/search/',
+      searchType: 'users',
+      param: 'in:name',
+      param2: 'language',
     }
+  },
+  created() {
+    this.$eventBus.$on('settings-changed', options => {
+      console.log('options =>', options)
+      this.handleSettingsChange(options)
+    })
   },
   methods: {
     async onSubmit(e) {
       e.preventDefault()
       if (this.searchText.length >= 3) {
-        let response = await fetch(`https://api.github.com/search/users?q=${this.searchText}`)
+        let response = await fetch(
+          `${this.baseUrl}${this.searchType}?q=${param2}:${this.searchText}+${this.param}`
+        )
         let myResponse = await response.json()
         this.users = myResponse.items
         this.$eventBus.$emit('submited', this.users)
@@ -24,6 +36,10 @@ export default Vue.component('SearchInput', {
     },
     handleChange(e) {
       this.onSubmit(e)
+    },
+    handleSettingsChange(options) {
+      console.log('hello from handleSettingsChange')
+      console.log(options)
     },
   },
 })

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { $ } from '../_utils'
 import SearchInput from './search-input'
 import UsersList from './users-list'
+import Settings from './settings'
 
 Vue.prototype.$eventBus = new Vue()
 
@@ -16,6 +17,7 @@ Vue.component('users-search', {
   components: {
     SearchInput,
     UsersList,
+    Settings,
   },
   created() {
     this.$eventBus.$on('submited', users => {
