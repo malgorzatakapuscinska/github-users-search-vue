@@ -50,7 +50,7 @@ module.exports = merge(common, {
         },
         filename: `${page}`,
         template: Path.resolve(__dirname, `../src/${page}`),
-        title: 'Basic project',
+        title: 'Vue exercise inputs',
       })
     ),
   ],

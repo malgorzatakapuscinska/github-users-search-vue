@@ -35,7 +35,7 @@ module.exports = merge(common, {
         },
         filename: `${page}`,
         template: Path.resolve(__dirname, `../src/${page}`),
-        title: 'Po stronie Farmaceuty',
+        title: 'Vue exercise - inputs',
       })
     ),
   ],
