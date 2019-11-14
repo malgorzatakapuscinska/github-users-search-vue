@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import { $ } from '../_utils'
-import SearchInput from './search-input'
-import UsersList from './users-list'
-import Settings from './settings'
+import './user'
+import './search-input'
+import './users-list'
+import './settings'
 
 Vue.prototype.$eventBus = new Vue()
 
@@ -11,17 +12,17 @@ Vue.component('users-search', {
   data() {
     return {
       users: [],
-      isUsersEmpty: false,
+      submitted: false,
     }
-  },
-  components: {
-    SearchInput,
-    UsersList,
-    Settings,
   },
   created() {
     this.$eventBus.$on('submited', users => {
       this.onSearch(users)
+      this.submitted = true
+    })
+    this.$eventBus.$on('input-cleared', () => {
+      this.submitted = false
+      this.users = []
     })
   },
   methods: {

@@ -13,20 +13,21 @@
       <p>You can choose one of the following:</p>
       <form class="settings__form">
         <div class="settings__form-item">
-          <label for="user-name">User name</label>
+          <label for="user-login">Search in users login</label>
+          <input type="radio" id="user-login" value="user-login" v-model="picked">
+        </div>
+        <div class="settings__form-item">
+          <label for="user-email">Search in users e-mail</label>
+          <input type="radio" id="user-email" value="user-email" v-model="picked">
+        </div>
+        <div class="settings__form-item">
+          <label for="user-name">Search in users real name</label>
           <input type="radio" id="user-name" value="user-name" v-model="picked">
         </div>
-        <div class="settings__form-item">
-          <label for="lang">Language</label>
-          <input type="radio" id="lang" value="language" v-model="picked">
-        </div>
-        <div class="settings__form-item">
-          <label for="repo-name">Repository name</label>
-          <input type="radio" id="repo-name" value="repository-name" v-model="picked">
-        </div>
         <span>Picked: {{picked}}</span>
-        <button class="settings__submit" type="submit" @click="onSubmit($event)">Zapisz</button>
+        <button class="settings__submit" type="submit" @click.prevent="onSubmit($event)">Zapisz</button>
       </form>
+      <p>default setting is searching by users login</p>
     </div>
   </div>
 </script>

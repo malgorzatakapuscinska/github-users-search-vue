@@ -14,22 +14,23 @@ export default Vue.component('Settings', {
       return !this.opened ? (this.opened = true) : (this.opened = false)
     },
     onSubmit(e) {
-      e.preventDefault()
       let options = {}
       console.log('this.picked =>', this.picked)
       switch (this.picked) {
+        case 'user-login':
+          options.searchType = 'users'
+          options.param = 'in:login'
+          break
+        case 'user-email':
+          options.searchType = 'users'
+          options.param = 'in:email'
+          break
         case 'user-name':
           options.searchType = 'users'
           options.param = 'in:name'
           break
-        case 'repository-name':
-          options.searchType = 'repository'
-          options.param = 'name'
-          break
-        case 'language':
-          options.searchType = 'repositiories'
-          options.param2 = 'language'
-          break
+        default:
+          return
       }
       console.log('input submitted')
       console.log('options from settings=> ', options)

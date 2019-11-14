@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export default Vue.component('SearchInput', {
+Vue.component('SearchInput', {
   template: '#search-input',
   props: ['date'],
   data() {
@@ -10,36 +10,38 @@ export default Vue.component('SearchInput', {
       baseUrl: 'https://api.github.com/search/',
       searchType: 'users',
       param: 'in:name',
-      param2: 'language',
+      submitTimeout: null,
     }
   },
   created() {
     this.$eventBus.$on('settings-changed', options => {
-      console.log('options =>', options)
       this.handleSettingsChange(options)
     })
   },
   methods: {
-    async onSubmit(e) {
-      e.preventDefault()
+    async onSubmit() {
       if (this.searchText.length >= 3) {
         let response = await fetch(
-          `${this.baseUrl}${this.searchType}?q=${param2}:${this.searchText}+${this.param}`
+          `${this.baseUrl}${this.searchType}?q=${this.searchText}+${this.param}`
         )
         let myResponse = await response.json()
         this.users = myResponse.items
         this.$eventBus.$emit('submited', this.users)
       } else {
         this.users = []
-        this.$eventBus.$emit('submited')
       }
     },
     handleChange(e) {
-      this.onSubmit(e)
+      this.handleClearInput()
+      if (this.submitTimeout) clearTimeout(this.submitTimeout)
+      this.submitTimeout = window.setTimeout(() => this.onSubmit(e), 2000)
     },
     handleSettingsChange(options) {
-      console.log('hello from handleSettingsChange')
-      console.log(options)
+      this.searchType = options.searchType
+      this.param = options.param
+    },
+    handleClearInput() {
+      if (!this.searchText) this.$eventBus.$emit('input-cleared')
     },
   },
 })

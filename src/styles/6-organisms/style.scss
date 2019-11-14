@@ -20,6 +20,7 @@ section {
 .settings {
   &__open {
     color: white;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,8 +59,10 @@ section {
     transition: height .3s ease-in-out, opacity .3s ease-in-out;
     position: relative;
     z-index: -1;
+    color: white;
+    font-weight: bold;
     &--open {
-      height: 350px;
+      height: 450px;
       opacity: 1;
       z-index: 1;
     }
@@ -88,6 +91,12 @@ section {
   }
 }
 
+.users-search__not-found {
+  text-align: center;
+  font-size: 14px; 
+  font-weight: bold;
+}
+
 header {
   text-align: center;
 }
@@ -104,6 +113,10 @@ form input, form label {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+}
+
+form label {
+  font-weight: bold;
 }
 
 form input:focus {
@@ -150,6 +163,7 @@ form input:focus {
 .userBox span {
   max-width: 100px;
   word-break: break-all;
+  text-align: center;
 } 
 
 .userBox:hover, .userBox:hover {

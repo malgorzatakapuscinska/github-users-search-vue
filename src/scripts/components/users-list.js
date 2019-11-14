@@ -1,15 +1,14 @@
 import Vue from 'vue'
-import User from './user'
 
-export default Vue.component('UsersList', {
+Vue.component('UsersList', {
   template: '#users-list',
   props: { users: Array },
   data() {
     return {}
   },
-  components: {
-    User,
-  },
+  // components: {
+  //   User,
+  // },
   methods: {},
 })
 

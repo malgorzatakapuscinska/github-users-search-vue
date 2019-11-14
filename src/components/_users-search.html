@@ -11,6 +11,7 @@
         v-if="users && users.length > 0"
         :users="users"
       />
+      <p v-else-if="submitted === true" class="users-search__not-found">Nothing found :-(</p>
     </main>
   </section>
 </script>

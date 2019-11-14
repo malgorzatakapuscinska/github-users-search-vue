@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export default Vue.component('User', {
+Vue.component('User', {
   template: '#user',
   props: { user: Object },
   data() {
