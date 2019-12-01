@@ -2,9 +2,9 @@
   <section @submited="onSearch($event)">
     <header>
       <img src="../images/GitHub_Mark.png" />
-      <h1>GitHub Users Search Engine</h1>
+      <h1>GitHub's Users Search Engine</h1>
     </header>
-    <Settings />
+    <Settings v-if="showSettings === true"/>
     <main>
       <search-input />
       <UsersList 

@@ -6,7 +6,6 @@ Vue.component('User', {
   data() {
     return {}
   },
-  methods: {},
 })
 
 /**

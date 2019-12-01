@@ -1,5 +1,5 @@
 <script type="text/x-template" id="search-input">
-  <form @submit.prevent="onSubmit" @keydown="handleChange">
+  <form @submit.prevent="onSubmit" @keyup="handleChange">
     <label htmlFor="searchText">Szukana fraza: </label>
     <input 
       type="text"

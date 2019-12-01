@@ -6,7 +6,6 @@ Vue.component('SearchInput', {
   data() {
     return {
       searchText: '',
-      users: [],
       baseUrl: 'https://api.github.com/search/',
       searchType: 'users',
       param: 'in:name',
@@ -19,27 +18,48 @@ Vue.component('SearchInput', {
     })
   },
   methods: {
+    // handle form submit
+
     async onSubmit() {
+      // make api call if searchText is longer than 3 signs
+
       if (this.searchText.length >= 3) {
-        let response = await fetch(
+        // make async github api call using fetch method
+
+        const response = await fetch(
           `${this.baseUrl}${this.searchType}?q=${this.searchText}+${this.param}`
         )
-        let myResponse = await response.json()
-        this.users = myResponse.items
-        this.$eventBus.$emit('submited', this.users)
-      } else {
-        this.users = []
+        const myResponse = await response.json()
+        const users = myResponse.items
+
+        // emit custom 'submitted' evant and send found users into search-users component
+
+        this.$eventBus.$emit('submited', users)
       }
     },
     handleChange(e) {
+      // emit  'input-cleared' event if input is empty
+
       this.handleClearInput()
+
+      // wait until user stops typing
+
       if (this.submitTimeout) clearTimeout(this.submitTimeout)
+
+      // the onSubmit runs after 2000ms - if this.submitTimeout exists it is cleared and onSubmit function doeasn't run
+
       this.submitTimeout = window.setTimeout(() => this.onSubmit(e), 2000)
     },
+
+    // save options in component's state (data property)
+
     handleSettingsChange(options) {
       this.searchType = options.searchType
       this.param = options.param
     },
+
+    // emit 'input-cleared' event
+
     handleClearInput() {
       if (!this.searchText) this.$eventBus.$emit('input-cleared')
     },

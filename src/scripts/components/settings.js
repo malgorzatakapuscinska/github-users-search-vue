@@ -6,25 +6,40 @@ export default Vue.component('Settings', {
   data() {
     return {
       opened: false,
-      picked: '',
+      picked: '', // stores user pick
     }
   },
   methods: {
+    // set up opened property - if equals true settings menu is showed, if equels false settings menu is closed
+
     handleOpen() {
-      return !this.opened ? (this.opened = true) : (this.opened = false)
+      !this.opened ? (this.opened = true) : (this.opened = false)
     },
-    onSubmit(e) {
-      let options = {}
-      console.log('this.picked =>', this.picked)
+
+    // emit "settings-changed" event and send piced settings into users-search component
+
+    onSubmit() {
+      const options = {}
+
+      // prepare payload for $eventBus - set up options.searchType and param
+
       switch (this.picked) {
+        // search by user login
+
         case 'user-login':
           options.searchType = 'users'
           options.param = 'in:login'
           break
+
+        // search by user e-mail
+
         case 'user-email':
           options.searchType = 'users'
           options.param = 'in:email'
           break
+
+        // search by user real name
+
         case 'user-name':
           options.searchType = 'users'
           options.param = 'in:name'
@@ -32,9 +47,13 @@ export default Vue.component('Settings', {
         default:
           return
       }
-      console.log('input submitted')
-      console.log('options from settings=> ', options)
+
+      // emit 'settings-changed' event
+
       this.$eventBus.$emit('settings-changed', options)
+
+      // close settings menu
+
       this.opened = false
     },
   },

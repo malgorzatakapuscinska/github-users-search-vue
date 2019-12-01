@@ -6,10 +6,6 @@ Vue.component('UsersList', {
   data() {
     return {}
   },
-  // components: {
-  //   User,
-  // },
-  methods: {},
 })
 
 /**
