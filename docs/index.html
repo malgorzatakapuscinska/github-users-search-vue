@@ -3,42 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <title>Vue exercise inputs</title>
-    <style>
-      body {
-        padding: 20px;
-      }
-      h2 {
-        margin: 20px 0 10px !important;
-      }
-      a {
-        display: inline-block;
-        padding: 5px 0;
-      }
-      a::before {
-        content: attr(href);
-        font-weight: 500;
-      }
-      a, a:link, a:visited, a:hover, a:active {
-        color: #d9007a;
-      }
-      a:focus {
-        outline: 2px solid #d9007a !important;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link href="css/main.css" rel="stylesheet"></head>
 
-  <body>
-    <h1>Vue exercise inputs</h1>
-    <h2>Pages</h2>
-    <ul>
-      
-    </ul>
-    <h2>Components</h2>
-    <ul>
-      <li><a href="_vue-example.html"></a></li>
-    </ul>
+  <body style="background-color: #7FB685;  padding: 20px;">
+    <div><script type="text/x-template" id="users-search">
+  <section @submited="onSearch($event)">
+    <header>
+      <img src="images/GitHub_Mark.png" />
+      <h1>GitHub's Users Search Engine</h1>
+    </header>
+    <Settings v-if="showSettings === true"/>
+    <main>
+      <search-input />
+      <UsersList 
+        v-if="users && users.length > 0"
+        :users="users"
+      />
+      <p v-else-if="submitted === true" class="users-search__not-found">Nothing found :-(</p>
+    </main>
+  </section>
+</script>
+
+<div id="users-search-wrapper">
+  <users-search>
+
+  </users-search>
+</div>
+</div>
+    <div><script type="text/x-template" id="settings">
+  <div class="settings">
+    <div class="settings__header">
+      <a class="settings__open"  @click="handleOpen">
+        <span>Settings</span>
+        <svg height=24 width=24>
+          <use xlink:href="#arrow-right" href="#arrow-right"/>
+        </svg>
+      </a>
+    </div>
+    <div class="settings__content" :class="{'settings__content--open': opened}" >
+      <p>Choose search type :-)</p>
+      <p>You can choose one of the following:</p>
+
+      <!-- TO DO USE V-FOR TO SHOW FORM ITEMS -->
+
+      <form class="settings__form">
+        <div class="settings__form-item">
+          <label for="user-login">Search in users login</label>
+          <input type="radio" id="user-login" value="user-login" v-model="picked">
+        </div>
+        <div class="settings__form-item">
+          <label for="user-email">Search in users e-mail</label>
+          <input type="radio" id="user-email" value="user-email" v-model="picked">
+        </div>
+        <div class="settings__form-item">
+          <label for="user-name">Search in users real name</label>
+          <input type="radio" id="user-name" value="user-name" v-model="picked">
+        </div>
+        <span>Picked: {{picked}}</span>
+        <button class="settings__submit" type="submit" @click.prevent="onSubmit($event)">Zapisz</button>
+      </form>
+      <p>default setting is searching by users login</p>
+    </div>
+  </div>
+</script>
+</div>
+    <div><script type="text/x-template" id="search-input">
+  <form @submit.prevent="onSubmit" @keyup="handleChange">
+    <label htmlFor="searchText">Szukana fraza: </label>
+    <input 
+      type="text"
+      id="searchText"
+      v-model="searchText"
+    />
+  </form>
+</script>
+</div>
+    <div><script type="text/x-template" id="users-list">
+  <div class="usersBox"> 
+    <User
+      v-for="user in users"
+      :key="user.id"
+      :user="user" 
+    />
+    <!-- TO DO ADD PAGINATION -->
+  </div>
+</script></div>
+    <div><script type="text/x-template" id="user">
+  <a class="userBox" :href="user.html_url" target="blank">
+    <img :src="user.avatar_url"/>
+    <span>{{user.login}}</span>
+  </a>
+</script></div>
   <script type="text/javascript" src="js/main.js"></script></body>
 </html>
