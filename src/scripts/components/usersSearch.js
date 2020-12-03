@@ -13,7 +13,7 @@ Vue.component('users-search', {
     return {
       users: [], // store users
       submitted: false, // needed for show proper alert - nothing found or show users list
-      showSettings: false, // shows and hides settings panel
+      showSettings: true, // shows and hides settings panel
     }
   },
   created() {

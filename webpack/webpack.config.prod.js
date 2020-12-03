@@ -14,8 +14,8 @@ const common = require('./webpack.common.js')
 const pages = Fs
   .readdirSync(Path.resolve('./src'))
   .filter(path => path.endsWith('.html'))
-  .filter(path => process.env.NODE_ENV === 'production' ? !path.startsWith('_') : true)
-  .filter(path => process.env.NODE_ENV === 'production' ? path !== 'index.html' : true)
+  // .filter(path => process.env.NODE_ENV === 'production' ? !path.startsWith('_') : true)
+  // .filter(path => process.env.NODE_ENV === 'production' ? path !== 'index.html' : true)
 
 module.exports = merge(common, {
   mode: 'production',
@@ -24,7 +24,7 @@ module.exports = merge(common, {
   bail: true,
   output: {
     filename: 'js/[name].js',
-    path: Path.resolve(__dirname, '../dist'),
+    path: Path.resolve(__dirname, '../docs'),
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -95,25 +95,25 @@ module.exports = merge(common, {
               outputPath: url => url.replace('src/', ''),
             },
           },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              webp: {
-                quality: 75
-              }
-            }
-          }
+          // {
+          //   loader: 'image-webpack-loader',
+          //   options: {
+          //     mozjpeg: {
+          //       progressive: true,
+          //       quality: 65
+          //     },
+          //     pngquant: {
+          //       quality: [0.65, 0.90],
+          //       speed: 4
+          //     },
+          //     gifsicle: {
+          //       interlaced: false,
+          //     },
+          //     webp: {
+          //       quality: 75
+          //     }
+          //   }
+          // }
         ]
       },
       {

@@ -3,42 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>${htmlWebpackPlugin.options.title}</title>
-    <style>
-      body {
-        padding: 20px;
-      }
-      h2 {
-        margin: 20px 0 10px !important;
-      }
-      a {
-        display: inline-block;
-        padding: 5px 0;
-      }
-      a::before {
-        content: attr(href);
-        font-weight: 500;
-      }
-      a, a:link, a:visited, a:hover, a:active {
-        color: #d9007a;
-      }
-      a:focus {
-        outline: 2px solid #d9007a !important;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
   </head>
 
-  <body>
-    <h1>${htmlWebpackPlugin.options.title}</h1>
-    <h2>Pages</h2>
-    <ul>
-      
-    </ul>
-    <h2>Components</h2>
-    <ul>
-      <li><a href="_vue-example.html"></a></li>
-    </ul>
+  <body style="background-color: #7FB685;  padding: 20px;">
+    <div>${require('./components/_users-search.html')}</div>
+    <div>${require('./components/_settings.html')}</div>
+    <div>${require('./components/_search-input.html')}</div>
+    <div>${require('./components/_users-list.html')}</div>
+    <div>${require('./components/_user.html')}</div>
   </body>
 </html>
