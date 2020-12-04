@@ -1,7 +1,7 @@
 // Injects the SVG sprite into the page
 ;(() => {
   const ajax = new XMLHttpRequest()
-  const spriteURL = process.NODE_EVC === 'production' ? './docs/icons.svg' : './icons.svg'
+  const spriteURL = process.env.NODE_EVC === 'production' ? './docs/icons.svg' : './icons.svg'
   ajax.open('GET', spriteURL, true)
   ajax.send()
   ajax.onload = () => {
