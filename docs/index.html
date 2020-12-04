@@ -6,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"><link href="css/main.css" rel="stylesheet"></head>
 
   <body style="background-color: #7FB685;  padding: 20px;">
+    <div><script type="text/x-template" id="search-input">
+  <form @submit.prevent="onSubmit" @keyup="handleChange">
+    <label htmlFor="searchText">Szukana fraza: </label>
+    <input 
+      type="text"
+      id="searchText"
+      v-model="searchText"
+    />
+  </form>
+</script>
+</div>
+    <div><script type="text/x-template" id="user">
+  <a class="userBox" :href="user.html_url" target="blank">
+    <img :src="user.avatar_url"/>
+    <span>{{user.login}}</span>
+  </a>
+</script></div>
     <div><script type="text/x-template" id="users-search">
   <section @submited="onSearch($event)">
     <header>
@@ -67,17 +84,6 @@
   </div>
 </script>
 </div>
-    <div><script type="text/x-template" id="search-input">
-  <form @submit.prevent="onSubmit" @keyup="handleChange">
-    <label htmlFor="searchText">Szukana fraza: </label>
-    <input 
-      type="text"
-      id="searchText"
-      v-model="searchText"
-    />
-  </form>
-</script>
-</div>
     <div><script type="text/x-template" id="users-list">
   <div class="usersBox"> 
     <User
@@ -87,12 +93,6 @@
     />
     <!-- TO DO ADD PAGINATION -->
   </div>
-</script></div>
-    <div><script type="text/x-template" id="user">
-  <a class="userBox" :href="user.html_url" target="blank">
-    <img :src="user.avatar_url"/>
-    <span>{{user.login}}</span>
-  </a>
 </script></div>
   <script type="text/javascript" src="js/main.js"></script></body>
 </html>
